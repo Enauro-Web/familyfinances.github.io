@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,26 +8,83 @@
     <title>Family Finance</title>
     <link rel="stylesheet" href="./styles.css">
     <link rel="stylesheet" href="https://bootswatch.com/5/darkly/bootstrap.min.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </head>
-<body class="bg-dark">    
-    
+
+<body class="bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sign In</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#signUpModal">Sign Up</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MODAL SIGNUP -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="signUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="signUpForm">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input type="email" class="form-control" id="signup-email" placeholder="email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" id="signup-password" class="form-control" placeholder="password"
+                                required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- END OF MODAL SIGNUP -->
+
     <div class="container p-4">
         <div class="row mb-5">
-            <div class="col-md-12" id="balances"></div>              
+            <div class="col-md-12" id="balances"></div>
         </div>
 
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="divExpenses-tab" data-bs-toggle="tab" data-bs-target="#divExpenses" type="button" role="tab" aria-controls="divExpenses" aria-selected="true">Expenses</button>
+                <button class="nav-link active" id="divExpenses-tab" data-bs-toggle="tab" data-bs-target="#divExpenses"
+                    type="button" role="tab" aria-controls="divExpenses" aria-selected="true">Expenses</button>
             </li>
             <li class="nav-item" role="presentation">
-            <button class="nav-link" id="divIncomes-tab" data-bs-toggle="tab" data-bs-target="#divIncomes" type="button" role="tab" aria-controls="divIncomes" aria-selected="false">Incomes</button>
-            </li>            
+                <button class="nav-link" id="divIncomes-tab" data-bs-toggle="tab" data-bs-target="#divIncomes"
+                    type="button" role="tab" aria-controls="divIncomes" aria-selected="false">Incomes</button>
+            </li>
         </ul>
-        
+
         <!-- Tab panes -->
         <div class="tab-content">
             <div class="tab-pane active" id="divExpenses" role="tabpanel" aria-labelledby="divExpenses-tab">
@@ -37,9 +95,12 @@
                                 <h1 class="h4">Add New Expense</h1>
                                 <form action="" id="newExpense-form">
                                     <label for="newExpense-title">Title:</label>
-                                    <input class="form-control mb-3" name="newExpense-title" type="text" required id="newExpense-title" placeholder="Expense Title">
+                                    <input class="form-control mb-3" name="newExpense-title" type="text" required
+                                        id="newExpense-title" placeholder="Expense Title">
                                     <label for="newExpense-description">Description:</label>
-                                    <textarea class="form-control mb-3" name="newExpense-description" id="newExpense-description" placeholder="Expense Description" cols="30" rows="2"></textarea>
+                                    <textarea class="form-control mb-3" name="newExpense-description"
+                                        id="newExpense-description" placeholder="Expense Description" cols="30"
+                                        rows="2"></textarea>
                                     <label for="newExpense-date">Date:</label>
                                     <input class="form-control mb-3" type="date" id="newExpense-date" required>
                                     <label for="newExpense-account">Account:</label>
@@ -53,8 +114,10 @@
                                     </select>
                                     <label for="newExpense-quantity">Amount:</label>
                                     <div class="display-flex">
-                                        <input class="form-control mb-3" type="number" step="any" name="newExpense-quantity" id="newExpense-quantity" value="0">
-                                        <select class="form-select mb-3" name="newExpense-currency" id="newExpense-currency">
+                                        <input class="form-control mb-3" type="number" step="any"
+                                            name="newExpense-quantity" id="newExpense-quantity" value="0">
+                                        <select class="form-select mb-3" name="newExpense-currency"
+                                            id="newExpense-currency">
                                             <option selected value="">Currency ...</option>
                                             <option value="EUR">EUR</option>
                                             <option value="USD">USD</option>
@@ -66,9 +129,9 @@
                             </div>
                         </div>
                     </div>
-                <div class="col-md-9" id="Expense-container"></div>
+                    <div class="col-md-9" id="Expense-container"></div>
+                </div>
             </div>
-        </div>
             <div class="tab-pane" id="divIncomes" role="tabpanel" aria-labelledby="divIncomes-tab">
                 <div class="row">
                     <div class="col-md-3">
@@ -77,9 +140,12 @@
                                 <h1 class="h4">Add New Income</h1>
                                 <form action="" id="newIncome-form">
                                     <label for="newIncome-title">Title:</label>
-                                    <input class="form-control mb-3" name="newIncome-title" type="text" required id="newIncome-title" placeholder="Income Title">
+                                    <input class="form-control mb-3" name="newIncome-title" type="text" required
+                                        id="newIncome-title" placeholder="Income Title">
                                     <label for="newIncome-description">Description:</label>
-                                    <textarea class="form-control mb-3" name="newIncome-description" id="newIncome-description" placeholder="Income Description" cols="30" rows="2"></textarea>
+                                    <textarea class="form-control mb-3" name="newIncome-description"
+                                        id="newIncome-description" placeholder="Income Description" cols="30"
+                                        rows="2"></textarea>
                                     <label for="newIncome-date">Date:</label>
                                     <input class="form-control mb-3" type="date" id="newIncome-date" required>
                                     <label for="newIncome-account">Account:</label>
@@ -92,7 +158,8 @@
                                         <option value="BitBox">BitBox</option>
                                     </select>
                                     <label for="newIncome-quantity">Amount:</label>
-                                    <input class="form-control mb-3" type="number" name="newIncome-quantity" id="newIncome-quantity" value="0">
+                                    <input class="form-control mb-3" type="number" name="newIncome-quantity"
+                                        id="newIncome-quantity" value="0">
                                     <select class="form-select mb-3" name="newIncome-currency" id="newIncome-currency">
                                         <option selected value="">Currency ...</option>
                                         <option value="EUR">EUR</option>
@@ -106,13 +173,16 @@
                     </div>
                     <div class="col-md-9" id="Income-container"></div>
                 </div>
-            </div> 
+            </div>
         </div>
 
 
-    </div>  
+    </div>
+
+    <script src="./auth.js"></script>
 
     <script type="module" src="./index.js"></script>
-    
+
 </body>
+
 </html>
