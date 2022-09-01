@@ -17,7 +17,10 @@ import {
 
 import {
     getAuth, 
-    createUserWithEmailAndPassword
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword,
+    onAuthStateChanged,
+    signOut
  } from "https://www.gstatic.com/firebasejs/9.9.3/firebase-auth.js"
 
 
@@ -157,9 +160,13 @@ export const updateBalace = async () => {
 }
 
 //AUTHENTICATION
+const auth = getAuth();
+const liUser = document.getElementById('idUser');
+
+//--Sign Up
 
 const signUpForm = document.getElementById('signUpForm');
-const auth = getAuth();
+var signUpModal = new bootstrap.Modal(document.getElementById('signUpModal'));
 
 signUpForm.addEventListener('submit', e => {
     e.preventDefault();
@@ -170,10 +177,58 @@ signUpForm.addEventListener('submit', e => {
     .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log(`User signed in ${user}`);
+        liUser.innerHTML = `<a class="nav-link" href="#">${user.email}</a>`;
+        signUpModal.hide();
     })
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
     });
 })
+
+
+//--Sign Up
+
+const signInForm = document.getElementById('signInForm');
+var signInModal = new bootstrap.Modal(document.getElementById('signInModal'));
+
+signInForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const signInEmail = document.getElementById('signin-email').value;
+    const signInPassw = document.getElementById('signin-password').value;    
+    
+    signInWithEmailAndPassword(auth, signInEmail, signInPassw)
+    .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;       
+        liUser.innerHTML = `<a class="nav-link" href="#">${user.email}</a>`;
+        signInModal.hide();
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+    });
+})
+
+// -- Logout
+const liLogout = document.getElementById('liLogout');
+liLogout.addEventListener('click', e=> {
+    e.preventDefault();
+    signOut(auth);
+    liUser.innerHTML ="";
+});
+
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+      // User is signed in, see docs for a list of available properties
+      // https://firebase.google.com/docs/reference/js/firebase.User
+      const uid = user.uid;
+      console.log('User sign in')
+      // ...
+    } else {
+      // User is signed out
+      // ...
+      console.log('User sign out')
+
+    }
+  });
