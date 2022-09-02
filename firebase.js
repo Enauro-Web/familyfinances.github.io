@@ -83,6 +83,11 @@ export const saveIncome = (title, date, description, account, quantity, currency
     updateBalace();
 }
 
+export const getIncomes = async () => {
+    var results = await getDocs(collection(db,'incomes'))
+    return results;
+}
+
 export const onGetIncomes = (callback) => {
     onSnapshot(collection(db, 'incomes'), callback);
 }
@@ -151,12 +156,24 @@ export const updateBalace = async () => {
     //console.log(totalIncING)
     //console.log("Balance ING:", totalIncING - totalExpING);
     //console.log("Balance Santander:", totalIncSantander - totalExpSantander);
-    const divBalances = document.getElementById('balances');
+    const btnING = document.getElementById('btnING');
+    const btnSantander = document.getElementById('btnSantander');
+    
+    btnING.innerText = parseFloat(totalIncING - totalExpING).toLocaleString('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+      });
+    btnSantander.innerText = parseFloat(totalIncSantander - totalExpSantander).toLocaleString('es-ES', {
+        style: 'currency',
+        currency: 'EUR',
+      });
+/*
     divBalances.innerHTML = `
     <h3 class="h5">Balances</h3>
     <p>ING: <strong>${totalIncING - totalExpING}</strong></p>
     <p>Santander: <strong>${totalIncSantander - totalExpSantander}</strong></p>
     `;
+    */
 }
 
 //AUTHENTICATION
@@ -218,6 +235,11 @@ liLogout.addEventListener('click', e=> {
     liUser.innerHTML ="";
 });
 
+
+export const onLoginChange = (callback) => {
+    onAuthStateChanged(auth, callback);    
+}
+/*
 onAuthStateChanged(auth, (user) => {
     if (user) {
       // User is signed in, see docs for a list of available properties
@@ -232,3 +254,4 @@ onAuthStateChanged(auth, (user) => {
 
     }
   });
+  */
